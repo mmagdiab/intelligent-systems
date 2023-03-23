@@ -18,6 +18,17 @@ _goal_state = [[1, 2, 3],
                [7, 8, 0]]
 
 
+def read_init_state():
+    init_state = []
+    print("Enter the initial state")
+    for r in range(3):
+        row_elements = []
+        for c in range(3):
+            row_elements.append(eval(input("Enter elem")))
+        init_state.append(row_elements)
+    return init_state
+
+
 def index(item, seq):
     """Helper function that returns -1 for non-found index value of a seq"""
     if item in seq:
@@ -28,16 +39,19 @@ def index(item, seq):
 
 class EightPuzzle:
 
-    def __init__(self):
+    def __init__(self, init_state="DEFAULT"):
         # heuristic value
         self._hval = 0
         # search depth of current instance
         self._depth = 0
         # parent node in search path
         self._parent = None
-        self.adj_matrix = []
-        for i in range(3):
-            self.adj_matrix.append(_goal_state[i][:])
+        if init_state == "DEFAULT":
+            self.adj_matrix = []
+            for i in range(3):
+                self.adj_matrix.append(_goal_state[i][:])
+        else:
+            self.adj_matrix = init_state
 
     def __eq__(self, other):
         if self.__class__ != other.__class__:
@@ -237,8 +251,9 @@ def h_default(puzzle):
 
 
 def main():
-    p = EightPuzzle()
-    p.shuffle(20)
+    init_state = read_init_state()
+    p = EightPuzzle(init_state)
+    # p.shuffle(20)
     print(p)
 
     path, count = p.solve(h_manhattan)

@@ -1,6 +1,8 @@
 """
 Repeat problem01 Using DFS and the sequence of actions are Move blank up –right –left -down .
 """
+"""NO SOLUTION"""
+
 import sys
 import numpy as np
 
@@ -127,8 +129,8 @@ class Puzzle:
                     frontier.add(child)
 
 
-start = np.array([[1, 2, 3], [8, 0, 4], [7, 6, 5]])
-goal = np.array([[2, 8, 1], [0, 4, 3], [7, 6, 5]])
+start = np.array([[1, 2, 3], [4, 5, 6], [7, 0, 8]])
+goal = np.array([[1, 2, 3], [4, 5, 6], [7, 0, 8]])
 startIndex = (1, 1)
 goalIndex = (1, 0)
 p = Puzzle(start, startIndex, goal, goalIndex)
